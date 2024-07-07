@@ -179,6 +179,18 @@
         "OriginalType": "Manual"
       },
       {
+        "Name": "AMD Crash Defender Service",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "OpposedBy": ["doPerformanceStuff"]
+      },
+      {
+        "Name": "AMD External Events Utility",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "OpposedBy": ["doPerformanceStuff"]
+      },
+      {
         "Name": "AppIDSvc",
         "StartupType": "Manual",
         "OriginalType": "Manual"
@@ -306,7 +318,9 @@
       {
         "Name": "CertPropSvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "RequiredFor": ["Smart Card"],
+        "OpposedBy": ["Privacy"]
       },
       {
         "Name": "ClipSVC",
@@ -391,7 +405,8 @@
       {
         "Name": "DiagTrack",
         "StartupType": "Disabled",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Privacy"]
       },
       {
         "Name": "DialogBlockingService",
@@ -401,7 +416,8 @@
       {
         "Name": "DispBrokerDesktopSvc",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "DisplayEnhancementService",
@@ -421,12 +437,14 @@
       {
         "Name": "DoSvc",
         "StartupType": "AutomaticDelayedStart",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "DsSvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "DsmSvc",
@@ -436,7 +454,8 @@
       {
         "Name": "DusmSvc",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "EFS",
@@ -452,6 +471,12 @@
         "Name": "EntAppSvc",
         "StartupType": "Manual",
         "OriginalType": "Manual"
+      },
+      {
+        "Name": "EPDService",
+        "StartupType": "Automatic",
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "EventLog",
@@ -521,7 +546,9 @@
       {
         "Name": "InstallService",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"],
+        "RequiredFor": ["Microsoft Store", "AppX"]
       },
       {
         "Name": "InventorySvc",
@@ -551,7 +578,8 @@
       {
         "Name": "LanmanServer",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "RequiredFor": ["Docker", "Network Printer"]
       },
       {
         "Name": "LanmanWorkstation",
@@ -571,7 +599,8 @@
       {
         "Name": "MSDTC",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "MSiSCSI",
@@ -581,7 +610,8 @@
       {
         "Name": "MapsBroker",
         "StartupType": "AutomaticDelayedStart",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "McpManagementService",
@@ -636,7 +666,8 @@
       {
         "Name": "NcdAutoSetup",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Privacy"]
       },
       {
         "Name": "NetSetupSvc",
@@ -721,7 +752,8 @@
       {
         "Name": "PimIndexMaintenanceSvc_*",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Privacy"]
       },
       {
         "Name": "PlugPlay",
@@ -894,6 +926,13 @@
         "OriginalType": "Manual"
       },
       {
+        "Name": "SessionSvc",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "RequiredFor": ["Lenovo Fingerprint Sensor"],
+        "OpposedBy": ["Performance"]
+      },
+      {
         "Name": "SgrmBroker",
         "StartupType": "Automatic",
         "OriginalType": "Automatic"
@@ -1001,7 +1040,8 @@
       {
         "Name": "TrkWks",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "TroubleshootingSvc",
@@ -1051,7 +1091,9 @@
       {
         "Name": "UsoSvc",
         "StartupType": "Manual",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": ["Performance"],
+        "RequiredFor": ["Windows Update", "Windows Insider"]
       },
       {
         "Name": "VGAuthService",
@@ -1156,12 +1198,14 @@
       {
         "Name": "WdiServiceHost",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "WdiSystemHost",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "WebClient",
@@ -1286,7 +1330,8 @@
       {
         "Name": "diagsvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "dmwappushservice",
@@ -1342,6 +1387,12 @@
         "Name": "iphlpsvc",
         "StartupType": "Automatic",
         "OriginalType": "Automatic"
+      },
+      {
+        "Name": "LenovoSmartStandby",
+        "StartupType": "Automatic",
+        "OriginalType": "Manual",
+        "OpposedBy": ["Performance"]
       },
       {
         "Name": "lfsvc",
