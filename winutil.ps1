@@ -8,7 +8,7 @@
     Author         : Chris Titus @christitustech
     Runspace Author: @DeveloperDurp
     GitHub         : https://github.com/ChrisTitusTech
-    Version        : 24.07.06
+    Version        : 24.07.07
 #>
 param (
     [switch]$Debug,
@@ -45,7 +45,7 @@ Add-Type -AssemblyName System.Windows.Forms
 # Variable to sync between runspaces
 $sync = [Hashtable]::Synchronized(@{})
 $sync.PSScriptRoot = $PSScriptRoot
-$sync.version = "24.07.06"
+$sync.version = "24.07.07"
 $sync.configs = @{}
 $sync.ProcessRunning = $false
 
@@ -8891,6 +8891,18 @@ $sync.configs.tweaks = '{
         "OriginalType": "Manual"
       },
       {
+        "Name": "AMD Crash Defender Service",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "OpposedBy": "doPerformanceStuff"
+      },
+      {
+        "Name": "AMD External Events Utility",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "OpposedBy": "doPerformanceStuff"
+      },
+      {
         "Name": "AppIDSvc",
         "StartupType": "Manual",
         "OriginalType": "Manual"
@@ -9018,7 +9030,9 @@ $sync.configs.tweaks = '{
       {
         "Name": "CertPropSvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "RequiredFor": "Smart Card",
+        "OpposedBy": "Privacy"
       },
       {
         "Name": "ClipSVC",
@@ -9103,7 +9117,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "DiagTrack",
         "StartupType": "Disabled",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Privacy"
       },
       {
         "Name": "DialogBlockingService",
@@ -9113,7 +9128,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "DispBrokerDesktopSvc",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "DisplayEnhancementService",
@@ -9133,12 +9149,14 @@ $sync.configs.tweaks = '{
       {
         "Name": "DoSvc",
         "StartupType": "AutomaticDelayedStart",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "DsSvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "DsmSvc",
@@ -9148,7 +9166,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "DusmSvc",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "EFS",
@@ -9164,6 +9183,12 @@ $sync.configs.tweaks = '{
         "Name": "EntAppSvc",
         "StartupType": "Manual",
         "OriginalType": "Manual"
+      },
+      {
+        "Name": "EPDService",
+        "StartupType": "Automatic",
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "EventLog",
@@ -9233,7 +9258,10 @@ $sync.configs.tweaks = '{
       {
         "Name": "InstallService",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance",
+        "RequiredFor": "Microsoft Store
+AppX"
       },
       {
         "Name": "InventorySvc",
@@ -9263,7 +9291,9 @@ $sync.configs.tweaks = '{
       {
         "Name": "LanmanServer",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "RequiredFor": "Docker
+Network Printer"
       },
       {
         "Name": "LanmanWorkstation",
@@ -9283,7 +9313,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "MSDTC",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "MSiSCSI",
@@ -9293,7 +9324,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "MapsBroker",
         "StartupType": "AutomaticDelayedStart",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "McpManagementService",
@@ -9348,7 +9380,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "NcdAutoSetup",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Privacy"
       },
       {
         "Name": "NetSetupSvc",
@@ -9433,7 +9466,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "PimIndexMaintenanceSvc_*",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Privacy"
       },
       {
         "Name": "PlugPlay",
@@ -9606,6 +9640,13 @@ $sync.configs.tweaks = '{
         "OriginalType": "Manual"
       },
       {
+        "Name": "SessionSvc",
+        "StartupType": "Manual",
+        "OriginalType": "Automatic",
+        "RequiredFor": "Lenovo Fingerprint Sensor",
+        "OpposedBy": "Performance"
+      },
+      {
         "Name": "SgrmBroker",
         "StartupType": "Automatic",
         "OriginalType": "Automatic"
@@ -9713,7 +9754,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "TrkWks",
         "StartupType": "Automatic",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "TroubleshootingSvc",
@@ -9763,7 +9805,10 @@ $sync.configs.tweaks = '{
       {
         "Name": "UsoSvc",
         "StartupType": "Manual",
-        "OriginalType": "Automatic"
+        "OriginalType": "Automatic",
+        "OpposedBy": "Performance",
+        "RequiredFor": "Windows Update
+Windows Insider"
       },
       {
         "Name": "VGAuthService",
@@ -9868,12 +9913,14 @@ $sync.configs.tweaks = '{
       {
         "Name": "WdiServiceHost",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "WdiSystemHost",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "WebClient",
@@ -9998,7 +10045,8 @@ $sync.configs.tweaks = '{
       {
         "Name": "diagsvc",
         "StartupType": "Manual",
-        "OriginalType": "Manual"
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "dmwappushservice",
@@ -10054,6 +10102,12 @@ $sync.configs.tweaks = '{
         "Name": "iphlpsvc",
         "StartupType": "Automatic",
         "OriginalType": "Automatic"
+      },
+      {
+        "Name": "LenovoSmartStandby",
+        "StartupType": "Automatic",
+        "OriginalType": "Manual",
+        "OpposedBy": "Performance"
       },
       {
         "Name": "lfsvc",
